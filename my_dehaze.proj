@@ -1,0 +1,39 @@
+<my_dehaze name="my_dehaze" parent="0" type="proj">
+ <model name="model" parent="my_dehaze" type="folder">
+  <atmos_cal.model name="atmos_cal.model" parent="model" type="model"/>
+  <my_fifo.model name="my_fifo.model" parent="model" type="model"/>
+  <dehaze_minfir.model name="dehaze_minfir.model" parent="model" type="model"/>
+  <BUFG.model name="BUFG.model" parent="model" type="model"/>
+  <mf_out_vld_delay.model name="mf_out_vld_delay.model" parent="model" type="model"/>
+  <dsamp.model name="dsamp.model" parent="model" type="model"/>
+  <my_fifo_fwft.model name="my_fifo_fwft.model" parent="model" type="model"/>
+  <dehaze_avefir.model name="dehaze_avefir.model" parent="model" type="model"/>
+  <dehaze_guidefirCal.model name="dehaze_guidefirCal.model" parent="model" type="model"/>
+  <dehaze_combineSignal.model name="dehaze_combineSignal.model" parent="model" type="model"/>
+  <dehaze_removal.model name="dehaze_removal.model" parent="model" type="model"/>
+  <dehaze_removalPar.model name="dehaze_removalPar.model" parent="model" type="model"/>
+  <dehaze_sft_ram.model name="dehaze_sft_ram.model" parent="model" type="model"/>
+  <gr_out_vld_delay.model name="gr_out_vld_delay.model" parent="model" type="model"/>
+  <rgb2gray.model name="rgb2gray.model" parent="model" type="model"/>
+  <rgbmin.model name="rgbmin.model" parent="model" type="model"/>
+  <transCal.model name="transCal.model" parent="model" type="model"/>
+  <transCal_par.model name="transCal_par.model" parent="model" type="model"/>
+ </model>
+ <test name="test" parent="my_dehaze" type="folder">
+  <atmos_cal_test.test name="atmos_cal_test.test" parent="test" type="test"/>
+  <my_fifo_test.test name="my_fifo_test.test" parent="test" type="test"/>
+  <mf_out_vld_delay_test.test name="mf_out_vld_delay_test.test" parent="test" type="test"/>
+  <dehaze_minfir_test.test name="dehaze_minfir_test.test" parent="test" type="test"/>
+  <dsamp_test.test name="dsamp_test.test" parent="test" type="test"/>
+  <my_fifo_fwft_test.test name="my_fifo_fwft_test.test" parent="test" type="test"/>
+  <dehaze_combineSignal_test.test name="dehaze_combineSignal_test.test" parent="test" type="test"/>
+  <dehaze_removal_test.test name="dehaze_removal_test.test" parent="test" type="test"/>
+  <rgb2gray_test.test name="rgb2gray_test.test" parent="test" type="test"/>
+  <rgbmin_test.test name="rgbmin_test.test" parent="test" type="test"/>
+  <transCal_test.test name="transCal_test.test" parent="test" type="test"/>
+ </test>
+ <const name="const" parent="my_dehaze" type="folder">
+  <dehaze.const name="dehaze.const" parent="const" type="const"/>
+ </const>
+ <verilog name="verilog" parent="my_dehaze" type="folder"/>
+</my_dehaze>

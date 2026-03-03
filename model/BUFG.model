@@ -1,0 +1,5 @@
+<!DOCTYPE Robei>
+<Module Category="Current" Class="module" Code="assign O = I;" Color="#d3d3d3" Comment="" Height="1080" Name="BUFG" Parameters="" Parent="0" Type="model" Width="1600" X="0" Y="0">
+ <Port Color="#faebd7" Connect="" Datasize="1" Datatype="wire" Description="" Height="30" Inout="input" Name="I" Parent="BUFG" Side="left" Width="30" X="-0.01875" Y="0.485185"/>
+ <Port Color="#00ffff" Connect="" Datasize="1" Datatype="wire" Description="" Height="30" Inout="output" Name="O" Parent="BUFG" Side="right" Width="30" X="0.98125" Y="0.485185"/>
+</Module>
