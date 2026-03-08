@@ -4,3 +4,56 @@
 2.去雾算法流程：分为两条路径进行处理，一条是常规的暗通道先验理论，即二倍降采样，RGB三通道求最小（这是根据暗通道理论即无雾区域总会有一个通道特别小）。然后进行大气光估计和透射率计算，得到粗透射率的暗通道图。另一条是走RGB转灰度，然后进入自适应导向滤波模块，整合暗通道图与导向滤波方法，并引入DDR，最终实现精透射率估计与边缘光滑的最终处理效果。
 3.对应模块代码顺序：暗通道图：dehaze_dsamp.sv--dehaze_rgbmin.sv--dehaze_minfir.sv--dehaze_atmosCal.sv--dehaze_transCal.sv
                   导向滤波：dehaze_rgb2gray.sv--dehaze_adjGuidefir.sv--dehaze_combineSignal.sv--dehaze_removal.sv
+
+流程图                HDMI输入视频流
+                       │
+                       ▼
+            dehaze_streamMachine
+              （视频流控制/同步）
+                       │
+                       ▼
+                dehaze_dsamp
+                （2×降采样）
+                       │
+                       ▼
+                dehaze_rgbmin
+              （RGB三通道最小值）
+                       │
+                       ▼
+                dehaze_minfir
+             （暗通道最小值滤波）
+                       │
+                       ▼
+               dehaze_atmosCal
+                （大气光估计）
+                       │
+                       ▼
+               dehaze_transCal
+               （粗透射率计算）
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+          │                         │
+          ▼                         ▼
+    dehaze_rgb2gray          dehaze_small_mean_fir
+     （RGB转灰度）              （小窗口均值滤波）
+          │                         │
+          ▼                         ▼
+      dehaze_avefir            dehaze_guidefirCal
+      （均值滤波）            （导向滤波参数计算）
+          │                         │
+          └────────────┬────────────┘
+                       ▼
+               dehaze_adjGuidefir
+              （导向滤波优化透射率）
+                       │
+                       ▼
+             dehaze_combineSignal
+               （信号延迟对齐）
+                       │
+                       ▼
+               dehaze_removal
+                （去雾图像恢复）
+                       │
+                       ▼
+                  HDMI输出
